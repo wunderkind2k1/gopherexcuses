@@ -11,7 +11,8 @@ const url = "http://developerexcuses.com"
 
 func main() {
 
-	loadExcuse()
+	err := loadExcuse()
+	handleErrorIfExists("Something went wrong: %s", err)
 }
 
 func loadExcuse() error {
