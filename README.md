@@ -7,7 +7,7 @@ This app is a cli to download excuses for you golang developers from developerex
 Go get it.
 
 `
- go get -u github.com/wunderkind2k1/gopherexcuse`
+ go get -u github.com/wunderkind2k1/gopherexcuses`
 
 and then call
 
