@@ -9,8 +9,15 @@ import (
 
 const url = "http://developerexcuses.com"
 
-func main() {
+// Testable is just to bind sth to the Loader interface to allow testing
+type Testable struct{}
 
+// Loader defines methods that imrprove testabilty
+type Loader interface {
+	getFromUrl() (*http.Response, error)
+}
+
+func main() {
 	err := loadExcuse()
 	handleErrorIfExists("Something went wrong: %s", err)
 }
