@@ -46,7 +46,7 @@ func main() {
 	handleErrorIfExists("Something went wrong: %s", err)
 }
 
-func loadExcuse(loader *LoaderStruct) error {
+func loadExcuse(loader Loader) error {
 	htmlSource, err := loader.getFromURL()
 	if err != nil {
 		return err
