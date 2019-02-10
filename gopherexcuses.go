@@ -10,7 +10,7 @@ import (
 
 const url = "http://developerexcuses.com"
 
-// Testable is just to bind sth to the Loader interface to allow testing
+// LoaderStruct is just to bind sth to the Loader interface to allow testing
 type LoaderStruct struct{}
 
 // Loader defines methods that imrprove testabilty
@@ -42,12 +42,11 @@ func (loader LoaderStruct) extract(htmlSource string) (string, error) {
 }
 
 func main() {
-	err := loadExcuse()
+	err := loadExcuse(&LoaderStruct{})
 	handleErrorIfExists("Something went wrong: %s", err)
 }
 
-func loadExcuse() error {
-	loader := &LoaderStruct{}
+func loadExcuse(loader *LoaderStruct) error {
 	htmlSource, err := loader.getFromURL()
 	if err != nil {
 		return err
