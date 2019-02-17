@@ -43,7 +43,7 @@ func (loader LoaderStruct) extract(htmlSource string) (string, error) {
 
 func main() {
 	err := loadExcuse(&LoaderStruct{})
-	handleErrorIfExists("Something went wrong: %s", err)
+	fmt.Println(handleErrorIfExists("Something went wrong: %s", err))
 }
 
 func loadExcuse(loader Loader) error {
@@ -59,8 +59,9 @@ func loadExcuse(loader Loader) error {
 	return nil
 }
 
-func handleErrorIfExists(message string, err error) {
+func handleErrorIfExists(message string, err error) string {
 	if err != nil {
-		fmt.Printf(message, err)
+		return fmt.Sprintf(message, err)
 	}
+	return ""
 }
