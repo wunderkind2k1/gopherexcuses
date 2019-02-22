@@ -36,7 +36,7 @@ func (loader LoaderStruct) extract(htmlSource string) (string, error) {
 	rx := regexp.MustCompile("<a.*?>(.*?)</a>")
 	foundLink := rx.FindAllStringSubmatch(htmlSource, -1)
 	if foundLink == nil {
-		return "", errors.New("Opps no excuse found")
+		return "", errors.New("Oops no excuse found")
 	}
 	return foundLink[0][1], nil
 }
