@@ -1,4 +1,4 @@
-package main
+package excuseme
 
 import (
 	"errors"
@@ -32,7 +32,7 @@ func (errorLoader ErrorMatcher) extract(htmlSource string) (string, error) {
 }
 
 func TestLoadExcuseURLError(t *testing.T) {
-	err := loadExcuse(&ErrorLoader{})
+	err := LoadExcuse(&ErrorLoader{})
 
 	if err == nil {
 		t.Fatalf("Expect an error when producing errors in http retrieval and htmlsource matching: %s", err)
@@ -40,7 +40,7 @@ func TestLoadExcuseURLError(t *testing.T) {
 }
 
 func TestLoadExcuseMatchError(t *testing.T) {
-	err := loadExcuse(&ErrorMatcher{})
+	err := LoadExcuse(&ErrorMatcher{})
 
 	if err == nil {
 		t.Fatalf("Expect an error when producing errors in http retrieval and htmlsource matching: %s", err)
@@ -50,7 +50,7 @@ func TestLoadExcuseMatchError(t *testing.T) {
 func TestHandleErrorIfExists(t *testing.T) {
 	testString := "this is the message: this is an error"
 
-	outString := handleErrorIfExists("this is the message: %s", errors.New("this is an error"))
+	outString := HandleErrorIfExists("this is the message: %s", errors.New("this is an error"))
 
 	if outString != testString {
 		t.Fatalf("did not recieve the expected message: %s", outString)
