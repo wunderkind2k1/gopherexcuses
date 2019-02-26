@@ -1,8 +1,8 @@
 package main
 
 import (
-	"./excuseme"
 	"fmt"
+	"github.com/wunderkind2k1/gopherexcuses/excuseme"
 )
 
 func main() {
