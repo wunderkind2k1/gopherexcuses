@@ -3,12 +3,17 @@ package excuseme
 import (
 	"errors"
 	"fmt"
+	"io"
 	"io/ioutil"
 	"net/http"
+	"os"
 	"regexp"
 )
 
 const url = "http://developerexcuses.com"
+
+// https://www.useragents.me/
+const userAgentChrome = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.3"
 
 // LoaderStruct is just to bind sth to the Loader interface to allow testing
 type LoaderStruct struct{}
@@ -20,11 +25,20 @@ type Loader interface {
 }
 
 func (loader LoaderStruct) getFromURL() (string, error) {
-	resp, err := http.Get(url)
+	client := &http.Client{}
+	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return "", err
 	}
-	defer resp.Body.Close()
+	req.Header.Set("User-Agent", userAgentChrome)
+	resp, _ := client.Do(req)
+	defer func(Body io.ReadCloser) {
+		err := Body.Close()
+		if err != nil {
+			fmt.Println("Weired: couldn't close body")
+			os.Exit(1)
+		}
+	}(resp.Body)
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return "", err
