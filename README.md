@@ -6,18 +6,23 @@ This app is a cli to download excuses for you golang developers from developerex
 
 Go get it.
 
-`
+```shell
 go install github.com/wunderkind2k1/gopherexcuses@latest
-
+```
 and then call
 
-`gopherexcuses`
+
+```shell
+gopherexcuses
+```
 
 # Have fun with it like this:
 
-`# dont be greedy and download to many. repect the service.`
+```shell
+# dont be greedy and download to many. repect the service.
 
-`for i in {1..10}; do gopherexcuses >> excuses.txt; done`
+for i in {1..10}; do gopherexcuses >> excuses.txt; done
+```
 
 
 # You can embedd the "service" in your own code by importing it:
